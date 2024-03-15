@@ -20,7 +20,7 @@ const dateNum = computed(() => {
     const dmy = d + m + y;
     const dmyList = dmy.split("");
     const acc = dmyList.reduce((accumulator, currentValue) => {
-        return parseInt(accumulator) + parseInt(currentValue);
+        return (parseInt(accumulator) + parseInt(currentValue)).toString();
     }, '0');
 
     return acc;
