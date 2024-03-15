@@ -21,7 +21,7 @@ const dateNum = computed(() => {
     const dmyList = dmy.split("");
     const acc = dmyList.reduce((accumulator, currentValue) => {
         return parseInt(accumulator) + parseInt(currentValue);
-    }, 0);
+    }, '0');
 
     return acc;
 });
