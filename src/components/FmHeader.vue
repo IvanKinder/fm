@@ -86,6 +86,9 @@ nav {
     display: none;
 }
 @media (max-width: 960px) {
+    header {
+        padding: 10px 7px;
+    };
     nav {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -105,6 +108,11 @@ nav {
     .menu {
         display: block;
         padding-top: 5px;
+    }
+}
+@media (max-width: 320px) {
+    nav > img {
+        max-width: 100px;
     }
 }
 </style>

@@ -122,4 +122,24 @@ const nameRules = [
     align-self: center;
     justify-self: center;
 }
+@media (max-width: 320px) {
+    .modal {
+        width: 100%;
+        padding: 4%;
+    }
+    .call-back {
+        line-height: 30px;
+        font-size: x-large;
+        max-width: 200px;
+    }
+    .consult-btn {
+        grid-template-columns: 215px 50px;
+    }
+    .new-btn {
+        font-size: 9px;
+    }
+    .check {
+        font-size: small;
+    }
+}
 </style>

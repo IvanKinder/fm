@@ -96,7 +96,9 @@ onMounted(() => {
                 </div>
             </div>
         </section>
-        <img src="../assets/mentor.png" alt="mentor photo">
+        <div class="mentor">
+            <img src="../assets/mentor.png" alt="mentor photo">
+        </div>
         <transition name="fade">
             <call-window v-if="showModal" :show-consult="showConsult"/>
         </transition>
@@ -129,8 +131,12 @@ section {
     grid-template-rows: repeat(4, max-content);
     gap: 45px;
 }
-main > img {
-    max-height: 591px;
+.mentor {
+    overflow: hidden;
+    width: fit-content;
+}
+.mentor > img {
+    max-height: 576px;
     justify-self: end;
 }
 .consult-btns {
@@ -216,8 +222,8 @@ hr {
     section {
         margin: 0;
     }
-    main > img {
-        max-height: 532px;
+    .mentor > img {
+        max-height: 517px;
     }
     .digits-container {
         margin: 0;
@@ -227,11 +233,14 @@ hr {
     section {
         gap: 20px;
     }
-    main > img {
-        max-height: 462px;
+    .mentor > img {
+        max-height: 447px;
     }
 }
 @media (max-width: 960px) {
+    main {
+        padding: 10px 7px;
+    }
     .consult-btns {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -239,6 +248,21 @@ hr {
     }
     h1 {
         margin: 0;
+        font-size: 18px;
+        width: 100%;
+    }
+    section {
+        max-width: 200px;
+        grid-template-rows: max-content 36px repeat(4, max-content);
+        gap: 45px;
+    }
+    .description {
+        gap: 8px;
+        font-size: 10px;
+        width: 135px;
+    }
+    .small-text {
+        font-size: 12px;
     }
     .btn-1 > div {
         height: 35px;
@@ -250,12 +274,18 @@ hr {
         width: 10px;
         margin: 0 4px 4px 0;
     }
+    .digits-container {
+        gap: 10px;
+    }
+    .digits-container > div {
+        gap: 8px;
+    }
 }
 @media (max-width: 720px) {
-    h1 {
+    /* h1 {
         font-size: 2.5rem;
-    }
-    main > img {
+    } */
+    .mentor > img {
         max-height: 400px;
     }
 }

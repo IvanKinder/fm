@@ -26,10 +26,11 @@ const setOver = () => {
   z-index: -1;
   overflow: auto;
   width: 100%;
+  max-height: 712px;
 }
-@media (max-width: 960px) {
+@media (max-width: 320px) {
   .back {
-    max-height: 585px;
+    max-height: 600px;
   }
 }
 @media (min-width: 961px) {
