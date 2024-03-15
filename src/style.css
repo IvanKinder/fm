@@ -63,7 +63,7 @@ button:focus-visible {
   text-align: center;
   display: grid;
   width: 100%;
-  height: 712px;
+  gap: 7vh;
 }
 
 @media (prefers-color-scheme: light) {

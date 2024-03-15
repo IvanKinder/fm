@@ -3,17 +3,29 @@
 
 <template>
     <header>
-        <nav class="top-menu">
-            <img class="touchable" src="../assets/logo.svg" alt="alex.shevtsov">
+        <nav>
+            <img src="../assets/logo.svg" alt="alex.shevtsov">
             <ul>
-                <li class="touchable">Обо мне</li>
-                <li class="touchable">Наставничество</li>
-                <li class="touchable">Мероприятия</li>
-                <li class="touchable">Кейсы</li>
-                <li class="touchable">Отзывы</li>
-                <li class="touchable">Контакты</li>
+                <li>
+                    <a class="touchable" href="#">Обо мне</a>
+                </li>
+                <li>
+                    <a class="touchable" href="#">Наставничество</a>
+                </li>
+                <li>
+                    <a class="touchable" href="#">Мероприятия</a>
+                </li>
+                <li>
+                    <a class="touchable" href="#">Кейсы</a>
+                </li>
+                <li>
+                    <a class="touchable" href="#">Отзывы</a>
+                </li>
+                <li>
+                    <a class="touchable" href="#">Контакты</a>
+                </li>
             </ul>
-            <div class="contacts touchable">
+            <div class="contacts">
                 <img src="../assets/call.svg">
                 <span>8-345-123-34-45</span>
             </div>
@@ -23,11 +35,13 @@
 
 <style scoped>
 header {
-    position: fixed;
+    font-family: Montserrat, sans-serif;
+    position: sticky;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 80%;
     color: white;
+    padding: 2% 10% 0;
 }
 ul {
     list-style-type: none;
@@ -38,20 +52,33 @@ ul {
     padding-inline-start: 0;
     justify-self: center;
 }
-img {
+nav > img {
     justify-self: end;
     align-self: center;
 }
-.top-menu {
+nav {
     display: grid;
     grid-template-columns: max-content 1fr max-content;
-    padding: 2rem 10rem;
 }
 .contacts {
     display: grid;
     grid-template-columns: 1fr 3fr;
     justify-self: start;
     gap: 1.2rem;
+}
+@media (max-width: 960px) {
+    nav {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    ul {
+        display: none;
+    }
+    nav > img {
+        justify-self: start;
+    }
+    .contacts {
+        justify-self: end;
+    }
 }
 .contacts > span {
     align-self: center;
@@ -61,6 +88,6 @@ img {
     justify-self: end;
 }
 .touchable {
-    cursor: pointer;
+    color: white;
 }
 </style>
