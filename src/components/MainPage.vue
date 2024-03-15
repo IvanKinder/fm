@@ -28,10 +28,8 @@ const setOver = () => {
   width: 100%;
   max-height: 712px;
 }
-@media (max-width: 320px) {
-  .back {
-    max-height: 600px;
-  }
+.over {
+  z-index: 1;
 }
 @media (min-width: 961px) {
   .back {
@@ -39,7 +37,9 @@ const setOver = () => {
     width: 100%;
   }
 }
-.over {
-  z-index: 1;
+@media (max-width: 320px) {
+  .back {
+    max-height: 600px;
+  }
 }
 </style>

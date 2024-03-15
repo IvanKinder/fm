@@ -223,7 +223,7 @@ hr {
         margin: 0;
     }
     .mentor > img {
-        max-height: 517px;
+        max-height: 583px;
     }
     .digits-container {
         margin: 0;
@@ -231,10 +231,10 @@ hr {
 }
 @media (max-width: 1153px) {
     section {
-        gap: 20px;
+        gap: 53px;
     }
     .mentor > img {
-        max-height: 447px;
+        max-height: 585px;
     }
 }
 @media (max-width: 960px) {
@@ -254,7 +254,7 @@ hr {
     section {
         max-width: 200px;
         grid-template-rows: max-content 36px repeat(4, max-content);
-        gap: 45px;
+        gap: 82px;
     }
     .description {
         gap: 8px;
@@ -282,11 +282,17 @@ hr {
     }
 }
 @media (max-width: 720px) {
-    /* h1 {
-        font-size: 2.5rem;
-    } */
+    .mentor {
+        right: 28px;
+        position: relative;
+    }
     .mentor > img {
-        max-height: 400px;
+        max-height: 530px;
+        position: relative;
+        top: 42px;
+    }
+    section {
+        grid-template-rows: max-content 36px repeat(2, max-content);
     }
 }
 </style>

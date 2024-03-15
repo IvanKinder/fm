@@ -122,7 +122,7 @@ const nameRules = [
     align-self: center;
     justify-self: center;
 }
-@media (max-width: 320px) {
+@media (max-width: 400px) {
     .modal {
         width: 100%;
         padding: 4%;
