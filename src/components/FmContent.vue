@@ -1,4 +1,12 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const windowWidth = ref(window.innerWidth);
+
+window.addEventListener('resize', function() {
+    windowWidth.value = window.innerWidth;
+});
+
 </script>
 
 <template>
@@ -7,14 +15,16 @@
             <h1>СОЗДАЮ УСЛОВИЯ ДЛЯ ВАШЕГО УСПЕХА</h1>
             <div class="description">
                 <hr>
-                <span class="small-text">Когда ваше время и энергия лучше сфокусированы, стремление к новым возможностям становится реальностью,  ваш успех зависит от ваших действий</span>
+                <span v-if="windowWidth > 960" class="small-text">Когда ваше время и энергия лучше сфокусированы, стремление к новым возможностям становится реальностью,  ваш успех зависит от ваших действий</span>
+                <span v-else class="small-text">Ваш успех зависит от ваших действий</span>
             </div>
             <div class="consult-btns">
                 <a href="#" class="consult-btn btn-1">
                     <div>
-                        <span>
+                        <span v-if="windowWidth > 960">
                             Записаться на консультацию
                         </span>
+                        <span v-else>Записаться</span>
                     </div>
                     <div>
                         <img class="arrow" src="../assets/arrow.svg">
@@ -22,9 +32,10 @@
                 </a>
                 <a href="#" class="consult-btn btn-2">
                     <div>
-                        <span>
+                        <span v-if="windowWidth > 960">
                             Бесплатная консультация
                         </span>
+                        <span v-else>Заказать звонок</span>
                     </div>
                     <div>
                         <img class="arrow" src="../assets/arrow_w.svg">
@@ -36,15 +47,16 @@
                     <hr>
                     <div class="digits">
                         <span class="mid-text">130+</span>
-                        <span class="small-text">техник для достижения целей</span>
+                        <span v-if="windowWidth > 960" class="small-text">техник для достижения целей</span>
+                        <span v-else class="small-text">техники</span>
                     </div>
                 </div>
                 <div>
                     <hr>
                     <div class="digits">
                         <span class="mid-text">250%</span>
-                        <span class="small-text">увеличение личной продуктивности</span>
-
+                        <span v-if="windowWidth > 960" class="small-text">увеличение личной продуктивности</span>
+                        <span v-else class="small-text">продуктивности</span>
                     </div>
                 </div>
             </div>
@@ -73,24 +85,13 @@ section {
     gap: 45px;
 }
 main > img {
-    max-height: 598px;
+    max-height: 591px;
     justify-self: end;
 }
-@media (max-width: 1310px) {
-    section {
-        margin: 0;
-    }
-    main > img {
-        max-height: 539px;
-    }
-}
-@media (max-width: 1153px) {
-    section {
-        gap: 20px;
-    }
-    main > img {
-        max-height: 469px;
-    }
+.consult-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
 }
 .description {
     display: grid;
@@ -106,11 +107,6 @@ hr {
     color: #FFFFFF80;
     line-height: 18px;
     font-size: 16px;
-}
-.consult-btns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
 }
 .consult-btn {
     display: grid;
@@ -169,5 +165,49 @@ hr {
     font-family: Montserrat, sans-serif;
     font-size: xx-large;
     line-height: normal;
+}
+@media (max-width: 1310px) {
+    section {
+        margin: 0;
+    }
+    main > img {
+        max-height: 532px;
+    }
+}
+@media (max-width: 1153px) {
+    section {
+        gap: 20px;
+    }
+    main > img {
+        max-height: 462px;
+    }
+}
+@media (max-width: 960px) {
+    .consult-btns {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        max-width: 200px;
+    }
+    h1 {
+        margin: 0;
+    }
+    .btn-1 > div {
+        height: 35px;
+    }
+    .btn-2 > div {
+        height: 35px;
+    }
+    .arrow {
+        width: 10px;
+        margin: 0 4px 4px 0;
+    }
+}
+@media (max-width: 716px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    main > img {
+        max-height: 400px;
+    }
 }
 </style>

@@ -6,16 +6,29 @@ import FmContent from './FmContent.vue';
 <template>
   <fm-header />
   <fm-content />
-  <img src="../assets/background.png" alt="background-image">
+  <div class="back">
+    <img src="../assets/background.png" alt="background-image">
+  </div>
 </template>
 
 <style scoped>
-img {
+.back {
   position: absolute;
-  height: 100%;
-  width: 100%;
   object-fit: cover;
   object-position: center;
   z-index: -1;
+  overflow: auto;
+  width: 100%;
+}
+@media (max-width: 960px) {
+  .back {
+    max-height: 585px;
+  }
+}
+@media (min-width: 961px) {
+  .back {
+    height: 100%;
+    width: 100%;
+  }
 }
 </style>

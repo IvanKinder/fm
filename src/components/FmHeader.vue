@@ -26,7 +26,12 @@
                 </li>
             </ul>
             <div class="contacts">
-                <img src="../assets/call.svg">
+                <a class="menu" href="#">
+                    <img src="../assets/menu.svg">
+                </a>
+                <a class="call" href="#">
+                    <img src="../assets/call.svg">
+                </a>
                 <span>8-345-123-34-45</span>
             </div>
         </nav>
@@ -36,7 +41,6 @@
 <style scoped>
 header {
     font-family: Montserrat, sans-serif;
-    position: sticky;
     top: 0;
     left: 0;
     width: 80%;
@@ -66,6 +70,20 @@ nav {
     justify-self: start;
     gap: 1.2rem;
 }
+.contacts > span {
+    align-self: center;
+    font-weight: 600;
+}
+.call {
+    justify-self: end;
+    padding-top: 5px;
+}
+.touchable {
+    color: white;
+}
+.menu {
+    display: none;
+}
 @media (max-width: 960px) {
     nav {
         grid-template-columns: repeat(2, 1fr);
@@ -78,16 +96,14 @@ nav {
     }
     .contacts {
         justify-self: end;
+        grid-template-columns: 1fr 1fr;
     }
-}
-.contacts > span {
-    align-self: center;
-    font-weight: 600;
-}
-.contacts > img {
-    justify-self: end;
-}
-.touchable {
-    color: white;
+    .contacts > span {
+        display: none;
+    }
+    .menu {
+        display: block;
+        padding-top: 5px;
+    }
 }
 </style>
