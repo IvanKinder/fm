@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import FmHeader from './FmHeader.vue';
 import FmContent from './FmContent.vue';
+import { ref } from 'vue';
+
+const overAll = ref(false);
+const setOver = () => {
+  overAll.value = !overAll.value;
+}
+
 </script>
 
 <template>
   <fm-header />
-  <fm-content />
-  <div class="back">
+  <fm-content :setOver="setOver" />
+  <div class="back" :class="{'over': overAll}">
     <img src="../assets/background.png" alt="background-image">
   </div>
 </template>
@@ -30,5 +37,8 @@ import FmContent from './FmContent.vue';
     height: 100%;
     width: 100%;
   }
+}
+.over {
+  z-index: 1;
 }
 </style>

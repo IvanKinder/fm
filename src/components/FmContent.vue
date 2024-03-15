@@ -1,18 +1,47 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import CallWindow from "./CallWindow.vue";
+import axios from "axios";
+
+interface Props {
+    setOver: Function;
+}
+
+const props = defineProps<Props>();
 
 const windowWidth = ref(window.innerWidth);
 const showModal = ref(false);
+const daily = ref(0);
+const dateNum = computed(() => {
+    const now = new Date();
+    const d = now.getDate().toString();
+    const m = now.getMonth().toString();
+    const y = now.getFullYear().toString();
+    const dmy = d + m + y;
+    const dmyList = dmy.split("");
+    const acc = dmyList.reduce((accumulator, currentValue) => {
+        return parseInt(accumulator) + parseInt(currentValue);
+    }, 0);
+
+    return acc;
+});
 
 window.addEventListener('resize', function() {
     windowWidth.value = window.innerWidth;
 });
 
 const showConsult = () => {
+    props.setOver();
     showModal.value = !showModal.value;
 }
 
+onMounted(() => {
+    axios.get("https://www.cbr-xml-daily.ru/daily_json.js").then((res) => {
+        daily.value =  Math.round(res.data?.Valute?.GBP?.Value);
+    }).catch(() => {
+        daily.value = 250;
+    })
+})
 </script>
 
 <template>
@@ -52,7 +81,7 @@ const showConsult = () => {
                 <div>
                     <hr>
                     <div class="digits">
-                        <span class="mid-text">130+</span>
+                        <span class="mid-text">{{dateNum}}+</span>
                         <span v-if="windowWidth > 960" class="small-text">техник для достижения целей</span>
                         <span v-else class="small-text">техники</span>
                     </div>
@@ -60,7 +89,7 @@ const showConsult = () => {
                 <div>
                     <hr>
                     <div class="digits">
-                        <span class="mid-text">250%</span>
+                        <span class="mid-text">{{daily}}%</span>
                         <span v-if="windowWidth > 960" class="small-text">увеличение личной продуктивности</span>
                         <span v-else class="small-text">продуктивности</span>
                     </div>
@@ -68,11 +97,19 @@ const showConsult = () => {
             </div>
         </section>
         <img src="../assets/mentor.png" alt="mentor photo">
-        <call-window v-if="showModal" />
+        <transition name="fade">
+            <call-window v-if="showModal" :show-consult="showConsult"/>
+        </transition>
     </main>
 </template>
 
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+    transition: transform 0.5s;
+}
+.fade-enter, .fade-leave-to {
+    transform: translateX(-100%);
+}
 main {
     display: grid;
     grid-template-columns: 1fr 0.8fr;
@@ -80,8 +117,9 @@ main {
     font-family: Raleway, sans-serif;
 }
 h1 {
-    margin-bottom: 0;
+    margin-top: 35px;
     font-size: 2.7rem;
+    width: 79%;
 }
 section {
     margin: 65px 0 30px 0;
@@ -109,6 +147,7 @@ hr {
     margin: 0;
     font-size: 53px;
     line-height: 1.3;
+    height: auto;
 }
 .small-text {
     color: #FFFFFF80;
@@ -158,7 +197,7 @@ hr {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
-    margin-top: 25px;
+    margin-top: 35px;
 }
 .digits-container > div {
     display: grid;
@@ -179,6 +218,9 @@ hr {
     }
     main > img {
         max-height: 532px;
+    }
+    .digits-container {
+        margin: 0;
     }
 }
 @media (max-width: 1153px) {
@@ -209,7 +251,7 @@ hr {
         margin: 0 4px 4px 0;
     }
 }
-@media (max-width: 716px) {
+@media (max-width: 720px) {
     h1 {
         font-size: 2.5rem;
     }

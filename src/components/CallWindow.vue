@@ -1,11 +1,35 @@
-<script lang="ts">
+<script setup lang="ts">
+import { defineProps, ref } from 'vue';
+
+interface Props {
+    showConsult: Function;
+}
+
+defineProps<Props>();
+
+const requires = (value: string) => {
+    if (value) return true
+    return 'Name is required.'
+}
+
+const name = ref("");
+const phone = ref("");
+
+const nameRules = [
+    requires,
+];
+    
+
 </script>
 
 <template>
     <div class="modal">
-        <div>Закажите обратный звонок</div>
+        <v-btn @click="showConsult" class="close-btn" icon="$close" size="x-large" variant="text"></v-btn>
+        <div class="call-back">Закажите обратный звонок</div>
         <div>
             <v-text-field
+            v-model="name"
+            :rules="nameRules"
             :counter="10"
             label="ИМЯ"
             hide-details
@@ -14,25 +38,28 @@
         </div>
         <div>
             <v-text-field
+            v-model="phone"
             :counter="10"
+            :rules="nameRules"
             label="ТЕЛЕФОН"
             hide-details
             required
           ></v-text-field>
         </div>
         <div class="check">
-            <v-checkbox label="Checkbox"></v-checkbox>
-            <span>Согласен на сохранение и обработку персональных данных</span>
+            <v-checkbox label="Согласен на сохранение и обработку персональных данных"></v-checkbox>
         </div>
         <div>
-            <a href="#" class="consult-btn btn-2">
-                <div>
-                    <span>Заказать обратный звонок</span>
+            <v-btn :disabled="!(name && phone)" variant="plain" class="consult-btns">
+                <div class="consult-btn btn-2">
+                    <div class="new-btn">
+                        <span>Заказать обратный звонок</span>
+                    </div>
+                    <div>
+                        <img class="arrow" src="../assets/arrow_w.svg">
+                    </div>
                 </div>
-                <div>
-                    <img class="arrow" src="../assets/arrow_w.svg">
-                </div>
-            </a>
+            </v-btn>
         </div>
     </div>
 </template>
@@ -44,12 +71,33 @@
     left: 0;
     top: 0;
     height: 100%;
-    width: 50%;
+    width: 32%;
     color: white;
+    display: grid;
+    padding: 2%;
+    font-family: Raleway, sans-serif;
+    z-index: 2;
+}
+.close-btn {
+    justify-self: end;
+}
+.call-back {
+    text-align: left;
+    font-size: xxx-large;
 }
 .check {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    text-align: left;
+    line-height: normal;
+}
+.arrow {
+    align-self: flex-end;
+    margin: 0 8px 8px 0;
+    justify-self: end;
+}
+.consult-btns {
+    padding: 0;
+    height: auto !important;
+    font-size: small;
 }
 .consult-btn {
     display: grid;
@@ -66,6 +114,9 @@
     height: 55px;
     border-left: 1px solid white;
     display: grid;
+}
+.new-btn {
+    padding: 0 20px;
 }
 .btn-2 > div > span {
     align-self: center;
