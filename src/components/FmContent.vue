@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import CallWindow from "./CallWindow.vue";
 
 const windowWidth = ref(window.innerWidth);
+const showModal = ref(false);
 
 window.addEventListener('resize', function() {
     windowWidth.value = window.innerWidth;
 });
+
+const showConsult = () => {
+    showModal.value = !showModal.value;
+}
 
 </script>
 
@@ -19,7 +25,7 @@ window.addEventListener('resize', function() {
                 <span v-else class="small-text">Ваш успех зависит от ваших действий</span>
             </div>
             <div class="consult-btns">
-                <a href="#" class="consult-btn btn-1">
+                <a href="#" @click="showConsult" class="consult-btn btn-1">
                     <div>
                         <span v-if="windowWidth > 960">
                             Записаться на консультацию
@@ -30,7 +36,7 @@ window.addEventListener('resize', function() {
                         <img class="arrow" src="../assets/arrow.svg">
                     </div>
                 </a>
-                <a href="#" class="consult-btn btn-2">
+                <a href="#" @click="showConsult" class="consult-btn btn-2">
                     <div>
                         <span v-if="windowWidth > 960">
                             Бесплатная консультация
@@ -62,6 +68,7 @@ window.addEventListener('resize', function() {
             </div>
         </section>
         <img src="../assets/mentor.png" alt="mentor photo">
+        <call-window v-if="showModal" />
     </main>
 </template>
 

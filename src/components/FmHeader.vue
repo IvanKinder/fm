@@ -43,7 +43,7 @@ header {
     font-family: Montserrat, sans-serif;
     top: 0;
     left: 0;
-    width: 80%;
+    width: 100%;
     color: white;
     padding: 2% 10% 0;
 }
@@ -55,6 +55,7 @@ ul {
     font-size: small;
     padding-inline-start: 0;
     justify-self: center;
+    align-self: center;
 }
 nav > img {
     justify-self: end;
